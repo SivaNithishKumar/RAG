@@ -3,3 +3,4 @@ langchain_experimental
 langchain_openai
 streamlit
 langchain_mistralai
+tabulate
