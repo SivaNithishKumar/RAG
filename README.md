@@ -29,13 +29,27 @@ The objective of this project is to develop a system that uses RAG (Retrieve and
 
 ## 🖼️ Output Screenshots
 
+            ### Initial Thoughts from the agent
+
 ![Screenshot-1](<screenshots/Screenshot 2024-05-08 103304.png>)
 
 ![Screenshot-2](<screenshots/Screenshot 2024-05-08 103347.png>)
+
+            ### Actual Output
 
 ![alt text](<screenshots/Screenshot 2024-05-08 103536.png>)
 
 ![alt text](<screenshots/Screenshot 2024-05-08 103619.png>)
 
-![alt text](<screenshots/Screenshot 2024-05-08 193951.png>)
+            ### Web-App UI
+
+![alt text](screenshots/app-ui.jpeg)
+![alt text](screenshots/output.jpeg)
+
+
+#### If you encounter any error , please wait a few mins before trying again because this app uses OpenAI GPT-3.5-turbo as the llm for the agent and for the free tier it has few limits 
+
+        The error will look like this 
+
+![alt text](screenshots/error.jpeg)
 
