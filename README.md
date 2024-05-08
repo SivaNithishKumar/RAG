@@ -29,7 +29,7 @@ The objective of this project is to develop a system that uses RAG (Retrieve and
 
 ## My Approach
     
-    **Mostly RAG based projects will have two major parts 
+    __Mostly RAG based projects will have two major parts__ 
         -Embedding
         -Retrieval
 
