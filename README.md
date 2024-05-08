@@ -29,5 +29,13 @@ The objective of this project is to develop a system that uses RAG (Retrieve and
 
 ## 🖼️ Output Screenshots
 
-![Screenshot-1](screenshots/Screenshot 2024-05-08 103304.png)
+![Screenshot-1](<screenshots/Screenshot 2024-05-08 103304.png>)
+
+![Screenshot-2](<screenshots/Screenshot 2024-05-08 103347.png>)
+
+![alt text](<screenshots/Screenshot 2024-05-08 103536.png>)
+
+![alt text](<screenshots/Screenshot 2024-05-08 103619.png>)
+
+![alt text](<screenshots/Screenshot 2024-05-08 193951.png>)
 
