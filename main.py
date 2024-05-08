@@ -1,3 +1,9 @@
+import json
+import time
+from flask import Flask, render_template, request, redirect, url_for
+
+app = Flask(__name__)
+
 from langchain.agents.agent_types import AgentType
 from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
 from langchain_openai import ChatOpenAI
@@ -18,42 +24,26 @@ agent = create_pandas_dataframe_agent(
     agent_type=AgentType.OPENAI_FUNCTIONS,
 )
 
-import streamlit as st
-import time
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        product_name = request.form.get('product_name')
+        if product_name:
+            sub_category, mandatory_fields = process_product(product_name)
+            return render_template('results.html', sub_category=sub_category, mandatory_fields=mandatory_fields)
+    return render_template('index.html')
+
 
 def process_product(product_name):
-    time.sleep(2)  
-    answer = agent.invoke(f"What sub-category does {product_name} belongs to , if it does not exist find the sub-category that is similar to it? and return the most related sub-category as output then get the columns that has value M for that sub-category and return the them as a dictionary instead of a string.")
+    answer = agent.invoke(f"What sub-category does {product_name} belong to, and if it does not exist, find the sub-category that is similar to it? Return the most related sub-category as output, then get the columns that have value 'M' for that sub-category and return them as a dictionary.")
     text = answer["output"]
-
     start_index = text.find("{")
-
-
     json_data = text[start_index:]
-
     json_data = json.loads(json_data)
-    field = list(json_data.keys())
-    sub_category = "Formal Shoes"
-    mandatory_fields = field
+    mandatory_fields = [key for key, value in json_data.items() if value == 'M']
+    sub_category = json_data.get('sub_category', 'Formal Shoes')
     return sub_category, mandatory_fields
 
 
-def main():
-    st.title("Product Information")
-
-    product_name = st.text_input("Enter Product Name:")
-
-    if product_name:
-        with st.spinner('Processing...'):
-            sub_category, mandatory_fields = process_product(product_name)
-
-        st.subheader("Sub-Category")
-        st.write(sub_category)
-
-        st.subheader("Mandatory Fields")
-        for field in mandatory_fields:
-            st.info(field)
-
-if __name__ == "__main__":
-    main()
-
+if __name__ == '__main__':
+    app.run()
