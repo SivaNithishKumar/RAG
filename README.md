@@ -54,6 +54,9 @@ The objective of this project is to develop a system that uses RAG (Retrieve and
         But GroqAI's Python_repl tool seems to have some errors . I hope they will fix it in the future other than that it worked better
         But i use gpt's api for the final app
 
+## App Link => [Product Categorizer](https://categorizer.streamlit.app/)
+
+
 ## 🖼️ Output Screenshots
 
 ### Agent under the Hood
