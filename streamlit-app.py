@@ -8,8 +8,12 @@ import json
 df = pd.read_json("Taxonomy-Fashion.json")
 
 import os
+<<<<<<< HEAD
+os.environ["OPENAI_API_KEY"] = secret
+=======
 os.environ["OPENAI_API_KEY"] = "sk-proj-LVoPf8QczuyrdFTwgjAhT3BlbkFJgxXJDnUi2V3DAQsjd1uO"
 
+>>>>>>> parent of 11c1a99 (Update streamlit-app.py)
 agent = create_pandas_dataframe_agent(
     ChatOpenAI(temperature=0, model="gpt-3.5-turbo-0613"),
     df,
