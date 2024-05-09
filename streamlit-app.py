@@ -1,3 +1,4 @@
+import streamlit as st
 from langchain.agents.agent_types import AgentType
 from langchain_experimental.agents.agent_toolkits import create_pandas_dataframe_agent
 from langchain_openai import ChatOpenAI
@@ -17,7 +18,6 @@ agent = create_pandas_dataframe_agent(
     agent_type=AgentType.OPENAI_FUNCTIONS,
 )
 
-import streamlit as st
 import time
 
 def process_product(product_name):
