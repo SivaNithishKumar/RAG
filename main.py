@@ -1,5 +1,5 @@
 import json
-import time
+import re
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
@@ -33,15 +33,26 @@ def index():
             return render_template('results.html', sub_category=sub_category, mandatory_fields=mandatory_fields)
     return render_template('index.html')
 
+def extract_quotes(text):
+    pattern = r'"([^"]*)"'
+    matches = re.findall(pattern, text)
+    return matches
 
 def process_product(product_name):
-    answer = agent.invoke(f"What sub-category does {product_name} belong to, and if it does not exist, find the sub-category that is similar to it? Return the most related sub-category as output, then get the columns that have value 'M' for that sub-category and return them as a dictionary.")
+    
+    answer = agent.invoke(f"What sub-category does {product_name} belongs to , if it does not exist find the sub-category that is similar to it? and return the most related sub-category as output then get the columns that has value M for that sub-category and return the them as a dictionary instead of a string.")
     text = answer["output"]
+    lis = extract_quotes(text) 
+    if product_name.lower() == lis[0].lower():        
+        sub_category = lis[1]
+    else:
+        sub_category = lis[0]     
     start_index = text.find("{")
     json_data = text[start_index:]
+
     json_data = json.loads(json_data)
-    mandatory_fields = [key for key, value in json_data.items() if value == 'M']
-    sub_category = json_data.get('sub_category', 'Formal Shoes')
+    field = list(json_data.keys())
+    mandatory_fields = field
     return sub_category, mandatory_fields
 
 
